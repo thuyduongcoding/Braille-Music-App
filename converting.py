@@ -3,18 +3,21 @@ import os
 import subprocess
 
 """
-Converting image file to musicXML
+Converting image file to musicXML file
 """
 def convert_to_mxl(image_path, mxl_folder):
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        audiveris_path = os.path.join(script_dir, "audiveris", "build", "distributions", "Audiveris-5.3-beta",
+        audiveris_path = os.path.join("audiveris", "build", "distributions", "Audiveris-5.3-beta",
                                       "bin", "Audiveris.bat")
-        
-        command = f"{audiveris_path} -batch -sheets 1 -export -output {mxl_folder} {image_path}"
-        
+        command = f"{audiveris_path} -batch -export -output {mxl_folder} {image_path}"
         print(command)
+        # shell_script_path = os.path.join(script_dir, "convertMXL.bat")  # Update the script name and extension accordingly
+        # with open(shell_script_path, 'w') as script_file:
+        #     script_file.write(command)
         subprocess.run(command)
+
+        # subprocess.Popen(command)
+
         print("Audiveris invocation successful.")
 
         # Choose the most recent musicXML file

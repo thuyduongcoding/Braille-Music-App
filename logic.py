@@ -1,16 +1,14 @@
 import subprocess
-import os
-import converted
+import converting
 from music21 import *
 
 def convert(image_file, mxl_path, output_path):
     try:
-        
         # Converting image to musicXML file
-        mxl_file = converted.convert_to_mxl(image_file, mxl_path)
-
+        mxl_file = converting.convert_to_mxl(image_file, mxl_path)
+        
         # Converting musicXML file to Braille format (.brf)
-        subprocess.run(["python", "converted.py", "convert_to_braille(mxl_file)"], 
+        subprocess.run(["python", "converting.py", "convert_to_braille(mxl_file)"], 
                        stdout=open(output_path + "/file.brf", "w"))
                 
     except subprocess.CalledProcessError as e:
